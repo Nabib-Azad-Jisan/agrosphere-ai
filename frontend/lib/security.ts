@@ -1,0 +1,12 @@
+export function sameOrigin(
+  origin: string | null,
+  host: string | null,
+): boolean {
+  if (!origin) return true; // Non-browser local clients; backend credentials still apply.
+  try {
+    const url = new URL(origin);
+    return ["http:", "https:"].includes(url.protocol) && url.host === host;
+  } catch {
+    return false;
+  }
+}

@@ -1,0 +1,15 @@
+.venv/
+node_modules/
+.next/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.db
+.env
+!.env.example
+ml/artifacts/**/*.joblib
+test-results/
+playwright-report/
+firmware/esp32_example/secrets.h
+*.tsbuildinfo
+*.log

@@ -1,0 +1,155 @@
+{
+  "$defs": {
+    "Measurements": {
+      "additionalProperties": false,
+      "properties": {
+        "soil_moisture_raw": {
+          "anyOf": [
+            {
+              "maximum": 65535,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Soil Moisture Raw"
+        },
+        "soil_moisture_vwc": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Soil Moisture Vwc"
+        },
+        "soil_temperature_c": {
+          "anyOf": [
+            {
+              "maximum": 85,
+              "minimum": -40,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Soil Temperature C"
+        },
+        "air_temperature_c": {
+          "anyOf": [
+            {
+              "maximum": 65,
+              "minimum": -50,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Air Temperature C"
+        },
+        "air_humidity_percent": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Air Humidity Percent"
+        }
+      },
+      "title": "Measurements",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "device_id": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Device Id",
+      "type": "string"
+    },
+    "plot_id": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Plot Id",
+      "type": "string"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "simulator",
+        "historical_import",
+        "esp32",
+        "external_sensor_api"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "measurements": {
+      "$ref": "#/$defs/Measurements"
+    },
+    "battery_percent": {
+      "anyOf": [
+        {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Battery Percent"
+    },
+    "calibration_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Calibration Id"
+    }
+  },
+  "required": [
+    "device_id",
+    "plot_id",
+    "timestamp",
+    "source",
+    "measurements"
+  ],
+  "title": "ReadingIn",
+  "type": "object"
+}
